@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
     });
   } catch (err) {
     console.error('Register error:', err);
-    res.status(500).json({ error: err.message || 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error during registration', details: err.message, stack: err.stack });
   }
 });
 
@@ -92,7 +92,7 @@ router.post('/login', async (req, res) => {
     });
   } catch (err) {
     console.error('Login error:', err);
-    res.status(500).json({ error: err.message || 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error during login', details: err.message, stack: err.stack });
   }
 });
 
@@ -111,7 +111,7 @@ router.get('/me', authenticate, async (req, res) => {
     res.json({ user: result.rows[0] });
   } catch (err) {
     console.error('Get profile error:', err);
-    res.status(500).json({ error: err.message || 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error getting profile', details: err.message, stack: err.stack });
   }
 });
 

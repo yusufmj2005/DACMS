@@ -7,6 +7,7 @@ const dbUrl = process.env.DB_URL || (isVercel ? 'file:/tmp/dacms.db' : 'file:dac
 
 const db = createClient({
   url: dbUrl,
+  authToken: process.env.DB_AUTH_TOKEN,
 });
 
 async function initDB() {
