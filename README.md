@@ -155,10 +155,9 @@ DB_URL=file:dacms.db
 
 ## Live Deployment
 
-- **Frontend:** _(deploy `frontend/index.html` to Vercel / Netlify / GitHub Pages)_
-- **Backend:** _(deploy `backend/` to Render / Railway / Fly.io)_
-
-> Update the `API` constant in `frontend/index.html` to point to your live backend URL.
+- **Unified Frontend & Backend Deployment:** [https://dacms-delta.vercel.app](https://dacms-delta.vercel.app)
+  
+> The project is deployed as a unified application on Vercel, utilizing Vercel's Edge/Serverless functions for the Node.js API and serving the static frontend from the root.
 
 ---
 
