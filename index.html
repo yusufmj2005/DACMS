@@ -1463,6 +1463,7 @@ function handleLogout() {
 function showApp() {
   document.getElementById('authPage').classList.remove('active');
   document.getElementById('appPage').classList.add('active');
+  document.getElementById('authModal').classList.remove('open');
 
   // Set sidebar info
   document.getElementById('sidebarUsername').textContent = state.user.username;
