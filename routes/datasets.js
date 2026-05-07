@@ -33,7 +33,7 @@ router.get('/', authenticate, async (req, res) => {
     }
   } catch (err) {
     console.error('Get datasets error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 });
 
@@ -67,7 +67,7 @@ router.get('/:id', authenticate, async (req, res) => {
     }
   } catch (err) {
     console.error('Get dataset error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 });
 
@@ -87,7 +87,7 @@ router.post('/', authenticate, requireAdmin, async (req, res) => {
     res.status(201).json({ message: 'Dataset created successfully.', dataset: result.rows[0] });
   } catch (err) {
     console.error('Create dataset error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 });
 
@@ -114,7 +114,7 @@ router.put('/:id', authenticate, requireAdmin, async (req, res) => {
     res.json({ message: 'Dataset updated successfully.', dataset: result.rows[0] });
   } catch (err) {
     console.error('Update dataset error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 });
 
@@ -130,7 +130,7 @@ router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
     res.json({ message: 'Dataset deleted successfully.' });
   } catch (err) {
     console.error('Delete dataset error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: err.message || 'Internal server error.' });
   }
 });
 
