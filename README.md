@@ -167,3 +167,4 @@ DB_URL=file:dacms.db
 ✅ Access control correctness — backend rejects unauthorized dataset access  
 ✅ Role enforcement — ADMIN vs USER views and API protection  
 ✅ End-to-end execution — register → login → create dataset → assign → access
+"# DACMS" 
