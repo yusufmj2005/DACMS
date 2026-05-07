@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
 // Start server
 async function start() {
   await initDB();
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 DACMS Backend running on port ${PORT}`);
     console.log(`📡 Health: http://localhost:${PORT}/api/health`);
     console.log(`🌐 Frontend: http://localhost:${PORT}`);
