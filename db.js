@@ -1,8 +1,12 @@
 const { createClient } = require('@libsql/client');
 require('dotenv').config();
 
+// Vercel serverless has read-only filesystem except /tmp
+const isVercel = process.env.VERCEL === '1';
+const dbUrl = process.env.DB_URL || (isVercel ? 'file:/tmp/dacms.db' : 'file:dacms.db');
+
 const db = createClient({
-  url: process.env.DB_URL || 'file:dacms.db',
+  url: dbUrl,
 });
 
 async function initDB() {

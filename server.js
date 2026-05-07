@@ -44,15 +44,18 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong.' });
 });
 
-// Start server
-async function start() {
-  await initDB();
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 DACMS Backend running on port ${PORT}`);
-    console.log(`📡 Health: http://localhost:${PORT}/api/health`);
-    console.log(`🌐 Frontend: http://localhost:${PORT}`);
-  });
+// Start server (only when run directly, not when imported by Vercel)
+if (require.main === module) {
+  async function start() {
+    await initDB();
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 DACMS Backend running on port ${PORT}`);
+      console.log(`📡 Health: http://localhost:${PORT}/api/health`);
+      console.log(`🌐 Frontend: http://localhost:${PORT}`);
+    });
+  }
+  start();
 }
 
-start();
-
+// Export for Vercel serverless
+module.exports = app;
