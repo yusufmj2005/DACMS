@@ -58,113 +58,104 @@
   .page { display: none; min-height: 100vh; position: relative; z-index: 1; }
   .page.active { display: block; }
 
-  /* ===== AUTH PAGE ===== */
-  .auth-wrap {
+  /* ICOMAT HOMEPAGE AESTHETIC */
+  .icomat-container {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
-
-  .auth-brand {
-    background: linear-gradient(135deg, #0d0d1a 0%, #1a0d33 50%, #0d1a33 100%);
+  .icomat-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 60% 10%, rgba(0, 175, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 10% 90%, rgba(108, 99, 255, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .icomat-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 64px;
+    position: relative;
+    z-index: 10;
+  }
+  .icomat-logo {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: #fff;
+  }
+  .icomat-nav-links { display: flex; gap: 16px; }
+  .icomat-hero {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 60px;
+    padding: 0 10%;
     position: relative;
-    overflow: hidden;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
   }
-
-  .auth-brand::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .brand-logo {
+  .icomat-heading {
     font-family: var(--head);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .brand-logo .dot {
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
-  }
-
-  .brand-heading {
-    font-family: var(--head);
-    font-size: 48px;
+    font-size: clamp(60px, 10vw, 120px);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+    line-height: 0.95;
+    margin-bottom: 32px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  .brand-sub {
-    font-size: 16px;
-    color: var(--text2);
-    max-width: 360px;
-    line-height: 1.7;
+  .icomat-sub {
+    font-family: var(--body);
+    font-size: 22px;
+    color: #999;
+    max-width: 600px;
+    margin-bottom: 48px;
+    line-height: 1.5;
   }
+  .icomat-actions { display: flex; gap: 20px; }
 
-  .brand-features {
-    margin-top: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .btn-icomat {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 36px;
+    font-family: var(--head);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
   }
-
-  .brand-feat {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 14px;
-    color: var(--text2);
+  .btn-icomat:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+  
+  .btn-icomat-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 16px 36px;
+    font-family: var(--head);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
   }
+  .btn-icomat-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.5); }
 
-  .brand-feat .icon {
-    width: 36px; height: 36px;
-    background: rgba(108,99,255,0.15);
-    border: 1px solid rgba(108,99,255,0.3);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .auth-form-wrap {
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 40px;
+  @media (max-width: 768px) {
+    .icomat-nav { padding: 24px; flex-direction: column; gap: 24px; }
+    .icomat-hero { padding: 0 24px; }
+    .icomat-actions { flex-direction: column; }
   }
 
   .auth-form-inner {
@@ -852,87 +843,84 @@
 
 <!-- AUTH PAGE -->
 <div class="page active" id="authPage">
-  <div class="auth-wrap">
-    <div class="auth-brand">
-      <div class="brand-logo">
-        <div class="dot"></div>
-        DACMS
+  <div class="icomat-container">
+    <nav class="icomat-nav">
+      <div class="icomat-logo">DACMS</div>
+      <div class="icomat-nav-links">
+        <button class="btn-icomat-outline" onclick="openAuthModal('login')">Log in</button>
+        <button class="btn-icomat" onclick="openAuthModal('register')">Get Started</button>
       </div>
-      <h1 class="brand-heading">Data Access<br>Control<br>Management</h1>
-      <p class="brand-sub">Secure, role-based access to your organization's datasets. Admins assign, users access. Simple, auditable, enforced.</p>
-      <div class="brand-features">
-        <div class="brand-feat">
-          <div class="icon">🔐</div>
-          <span>JWT-secured API with role enforcement</span>
-        </div>
-        <div class="brand-feat">
-          <div class="icon">🗂️</div>
-          <span>Dataset-level access mapping, persisted in database</span>
-        </div>
-        <div class="brand-feat">
-          <div class="icon">👥</div>
-          <span>Admin and User dashboards with separation</span>
-        </div>
+    </nav>
+    <main class="icomat-hero">
+      <h1 class="icomat-heading">Data Without Limits™</h1>
+      <p class="icomat-sub">Pioneering access control for a more secure, auditable, and sustainable data future.</p>
+      <div class="icomat-actions">
+        <button class="btn-icomat" onclick="openAuthModal('register')">Discover DACMS</button>
+        <button class="btn-icomat-outline" onclick="openAuthModal('login')">Log in</button>
       </div>
+    </main>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <div style="display:flex; justify-content:flex-end; margin-bottom:-20px;">
+      <button class="btn btn-icon" style="background:transparent; border:none; font-size:24px; color:#fff;" onclick="closeModal('authModal')">&times;</button>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('register', this)">Register</button>
     </div>
 
-    <div class="auth-form-wrap">
-      <div class="auth-form-inner">
-        <div class="auth-tabs">
-          <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
-          <button class="auth-tab" onclick="switchAuthTab('register', this)">Register</button>
-        </div>
+    <!-- LOGIN FORM -->
+    <div id="loginForm">
+      <h2 class="form-title">Welcome back</h2>
+      <p class="form-sub">Sign in to your account to continue</p>
+      <div id="loginError" class="error-msg hidden"></div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="loginPassword" class="form-input" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary mt-4" onclick="handleLogin()" id="loginBtn">
+        Sign In
+      </button>
+    </div>
 
-        <!-- LOGIN FORM -->
-        <div id="loginForm">
-          <h2 class="form-title">Welcome back</h2>
-          <p class="form-sub">Sign in to your account to continue</p>
-          <div id="loginError" class="error-msg hidden"></div>
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••">
-          </div>
-          <button class="btn btn-primary mt-4" onclick="handleLogin()" id="loginBtn">
-            Sign In
-          </button>
-        </div>
-
-        <!-- REGISTER FORM -->
-        <div id="registerForm" class="hidden">
-          <h2 class="form-title">Create account</h2>
-          <p class="form-sub">Join the system as a user or admin</p>
-          <div id="registerError" class="error-msg hidden"></div>
-          <div id="registerSuccess" class="success-msg hidden"></div>
-          <div class="form-group">
-            <label class="form-label">Username</label>
-            <input type="text" id="regUsername" class="form-input" placeholder="johndoe">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" id="regEmail" class="form-input" placeholder="you@example.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" id="regPassword" class="form-input" placeholder="••••••••">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Role</label>
-            <div class="select-wrap">
-              <select id="regRole" class="form-select">
-                <option value="USER">USER — View assigned datasets</option>
-                <option value="ADMIN">ADMIN — Manage datasets & access</option>
-              </select>
-            </div>
-          </div>
-          <button class="btn btn-primary mt-4" onclick="handleRegister()" id="registerBtn">
-            Create Account
-          </button>
+    <!-- REGISTER FORM -->
+    <div id="registerForm" class="hidden">
+      <h2 class="form-title">Create account</h2>
+      <p class="form-sub">Join the system as a user or admin</p>
+      <div id="registerError" class="error-msg hidden"></div>
+      <div id="registerSuccess" class="success-msg hidden"></div>
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" id="regUsername" class="form-input" placeholder="johndoe">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" id="regEmail" class="form-input" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="regPassword" class="form-input" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Role</label>
+        <div class="select-wrap">
+          <select id="regRole" class="form-select">
+            <option value="USER">USER — View assigned datasets</option>
+            <option value="ADMIN">ADMIN — Manage datasets & access</option>
+          </select>
         </div>
       </div>
+      <button class="btn btn-primary mt-4" onclick="handleRegister()" id="registerBtn">
+        Create Account
+      </button>
     </div>
   </div>
 </div>
@@ -1383,8 +1371,18 @@ window.onload = () => {
 function switchAuthTab(tab, el) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   if (el) el.classList.add('active');
+  else {
+    // If opened via openAuthModal without an element context
+    const index = tab === 'login' ? 0 : 1;
+    document.querySelectorAll('.auth-tab')[index].classList.add('active');
+  }
   document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
   document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
+}
+
+function openAuthModal(tab) {
+  switchAuthTab(tab, null);
+  document.getElementById('authModal').classList.add('open');
 }
 
 function toggleMobileSidebar() {
