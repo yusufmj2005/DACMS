@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
     // Generate JWT
     const token = jwt.sign(
       { id, username, email, role: userRole },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || 'dacms_default_secret_key_2025',
       { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }
     );
 
@@ -81,7 +81,7 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || 'dacms_default_secret_key_2025',
       { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }
     );
 
