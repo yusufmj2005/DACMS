@@ -1,7 +1,7 @@
 {
-  "name": "dacms",
+  "name": "dacms-backend",
   "version": "1.0.0",
-  "description": "Data Access Control Management System",
+  "description": "Data Access Control Management System - Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

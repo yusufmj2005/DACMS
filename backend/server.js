@@ -26,11 +26,11 @@ app.get('/api/health', (req, res) => {
 });
 
 // Serve frontend static files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Serve index.html for root
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 // 404 handler (API routes only)

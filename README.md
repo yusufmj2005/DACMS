@@ -11,6 +11,32 @@ DACMS is a full-stack web application that allows administrators to assign datas
 
 ---
 
+## Project Structure
+
+```
+DACMS/
+├── backend/                  # Node.js + Express API server
+│   ├── server.js             # Express app entry point
+│   ├── db.js                 # Database configuration & schema
+│   ├── package.json          # Backend dependencies
+│   ├── .env                  # Environment variables
+│   ├── vercel.json           # Vercel deployment config
+│   ├── api/
+│   │   └── index.js          # Vercel serverless entry point
+│   ├── middleware/
+│   │   └── auth.js           # JWT authentication middleware
+│   └── routes/
+│       ├── auth.js           # Registration, login, profile
+│       ├── datasets.js       # CRUD operations for datasets
+│       └── access.js         # Access mapping management
+├── frontend/                 # Static frontend (Vanilla HTML/CSS/JS SPA)
+│   └── index.html            # Single-page application
+├── README.md
+└── .gitignore
+```
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -131,6 +157,8 @@ node server.js
 npx serve frontend
 # Runs on http://localhost:3000
 ```
+
+> **Note:** When running the backend with `node server.js`, it also serves the frontend at http://localhost:5000 — no separate static server needed.
 
 ### Environment Variables (backend/.env)
 
