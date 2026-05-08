@@ -1,7 +1,12 @@
 {
   "version": 2,
-  "outputDirectory": "frontend",
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/frontend/index.html" }
   ]
 }
