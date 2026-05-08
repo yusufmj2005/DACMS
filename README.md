@@ -183,9 +183,16 @@ DB_URL=file:dacms.db
 
 ## Live Deployment
 
-- **Unified Frontend & Backend Deployment:** [https://dacms-delta.vercel.app](https://dacms-delta.vercel.app)
-  
-> The project is deployed as a unified application on Vercel, utilizing Vercel's Edge/Serverless functions for the Node.js API and serving the static frontend from the root.
+The project is structured to be deployed across two separate hosting platforms:
+
+### 1. Backend (Render)
+- **Deployment:** Deploy the `backend/` directory as a "Web Service" on Render.
+- **Environment Variables:** Set `JWT_SECRET`, `JWT_EXPIRES_IN`, `DB_URL`, and `DB_AUTH_TOKEN`.
+- **Note:** Since Render uses an ephemeral file system on free tiers, it is highly recommended to use a remote database like **Turso** by setting `DB_URL` to your Turso URL (e.g., `libsql://...`) and providing the `DB_AUTH_TOKEN`.
+
+### 2. Frontend (Vercel)
+- **Deployment:** Deploy the root directory to Vercel. The `vercel.json` file is already configured to serve the static SPA from the `frontend/` folder.
+- **Configuration:** Before deploying, make sure to update the `API` constant in `frontend/index.html` to point to your new Render backend URL.
 
 ---
 

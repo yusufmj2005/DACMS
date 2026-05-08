@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const { initDB } = require('./db');
 
 const app = express();
@@ -25,12 +24,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'DACMS API is running', timestamp: new Date().toISOString() });
 });
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
-
-// Serve index.html for root
+// Root route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+  res.json({ status: 'ok', message: 'DACMS Backend API', docs: '/api/health' });
 });
 
 // 404 handler (API routes only)
@@ -44,18 +40,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong.' });
 });
 
-// Start server (only when run directly, not when imported by Vercel)
-if (require.main === module) {
-  async function start() {
-    await initDB();
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`🚀 DACMS Backend running on port ${PORT}`);
-      console.log(`📡 Health: http://localhost:${PORT}/api/health`);
-      console.log(`🌐 Frontend: http://localhost:${PORT}`);
-    });
-  }
-  start();
+// Start server
+async function start() {
+  await initDB();
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 DACMS Backend running on port ${PORT}`);
+    console.log(`📡 Health: http://localhost:${PORT}/api/health`);
+  });
 }
+start();
 
-// Export for Vercel serverless
 module.exports = app;

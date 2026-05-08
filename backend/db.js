@@ -1,9 +1,9 @@
 const { createClient } = require('@libsql/client');
 require('dotenv').config();
 
-// Vercel serverless has read-only filesystem except /tmp
-const isVercel = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
-const dbUrl = process.env.DB_URL || (isVercel ? 'file:/tmp/dacms.db' : 'file:dacms.db');
+// In production environments without a persistent disk, use a temporary file if a remote DB is not provided
+const isProd = process.env.NODE_ENV === 'production';
+const dbUrl = process.env.DB_URL || (isProd ? 'file:/tmp/dacms.db' : 'file:dacms.db');
 
 const db = createClient({
   url: dbUrl,
